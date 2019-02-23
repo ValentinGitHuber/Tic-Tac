@@ -15,8 +15,8 @@ body{
   height: 600px;
 }
 .Cell {
-  border-right: 0.1em solid transparent;
-  border-bottom: 0.1em solid transparent;
+  border-right: 0.13em solid transparent;
+  border-bottom: 0.13em solid transparent;
   border-image: url('http://emptyeasel.com/wp-content/uploads/2012/11/creatingtexture2-carrielewis.jpg') 0 27 27 27 round stretch;
   box-sizing: border-box;
   width: 200px;
@@ -79,6 +79,8 @@ button:active{
     height: 300px;
   }
   .Cell {
+    border-right: 0.1em solid transparent;
+    border-bottom: 0.1em solid transparent;
     width: 100px;
     height: 100px;
   }
