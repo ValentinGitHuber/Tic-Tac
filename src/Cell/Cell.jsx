@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import './Cell.css';
 import PropTypes from 'prop-types';
+import Piece from '../Piece/Piece';
 
 class Cell extends Component {
     constructor(props) {
@@ -10,20 +12,27 @@ class Cell extends Component {
     }
 
     clickCell() {
-        this.props.sendId(this.props.id);
+        this.props.sendId(this.props.position.id);
     }
 
     render() {
+        const piece = () => {
+            let item = this.props.position;
+            if (_.has(item, 'piece')) {
+                return (<Piece side={item.piece.side}/>);
+            }
+        }
+        
         return (
             <div className="Cell" onClick={this.clickCell}>
-                {this.props.id}
+                { piece() }
             </div>
         );
     }
 }
 
 Cell.propTypes = {
-    id: PropTypes.number
+    positions: PropTypes.array
 };
 
 export default Cell;

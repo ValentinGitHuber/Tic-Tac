@@ -64,21 +64,15 @@ class App extends Component {
   }
 
   move(id) {
-    const movingSide = parseInt(this.state.game.movingSide);
+    const movingSide = this.state.game.movingSide;
     console.log('Moving side: ', movingSide)
     // Remove piece from pieces by movingSide
     const pieces = this.state.pieces;
-    console.log('pieces: ', pieces)
     const index = _.findIndex(pieces, { side: movingSide });
-    console.log('index ', index)
     let newpieces = pieces;
     if (index > -1) {
       newpieces =  [...pieces.slice(0,index), ...pieces.slice(index+1)];
-      console.log('newpieces ', newpieces)
     }
-    
-
-
     // Set piece to position
     const positions = this.state.positions;
     const position = _.find(positions, ['id', id]);
@@ -89,14 +83,17 @@ class App extends Component {
     const game = this.state.game;
     game.movingSide = movingSide === 0 ? 1 : 0;
     
-
     this.setState({
-      positions,
-      pieces: newpieces,
-      game
-    });
+        positions,
+        pieces: newpieces,
+        game
+      },
+      () => this.gameState()
+    );
+  }
 
-    // console.log(game)
+  gameState() {
+    console.log("Updated state")
   }
 
 
@@ -104,7 +101,7 @@ class App extends Component {
   render() {
     let cells = () => {
       return this.state.positions.map((item, i) => {
-        return (<Cell key={i} id={item.id} sendId={this.getClickedId}/>)
+        return (<Cell key={i} position={item} sendId={this.getClickedId} />)
       });
     }
 
