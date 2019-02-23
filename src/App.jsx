@@ -39,6 +39,9 @@ class App extends Component {
       [0, 4, 8],
       [2, 4, 6]
     ];
+    ////////////////////////////////////
+    // End of Tic Tac deafult game rules
+    ////////////////////////////////////
 
     // App state
     this.state = {
