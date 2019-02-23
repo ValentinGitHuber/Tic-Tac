@@ -4,30 +4,23 @@ import './App.css';
 import Cell from './Cell/Cell';
 
 function drawLine(idFrom, idTo) {
-
   const div1 = document.getElementById('the'+idFrom);
   const div2 = document.getElementById('the'+idTo);
-
   let x1 = div1.offsetLeft + (div1.offsetWidth/2);
   let y1 = div1.offsetTop + (div1.offsetHeight/2);
-  
   let x2 = div2.offsetLeft + (div2.offsetWidth/2);
   let y2 = div2.offsetTop + (div2.offsetHeight/2);
-
-  var newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
+  let newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
   newLine.setAttribute('x1', x1);
   newLine.setAttribute('y1', y1);
   newLine.setAttribute('x2', x2);
   newLine.setAttribute('y2', y2);
-  newLine.setAttribute("stroke", "black");
-  var svg = document.getElementById('svg');
+  let svg = document.getElementById('svg');
   svg.appendChild(newLine);
 }
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    /////////////////////////////
+function initialState() {
+  /////////////////////////////
     // Tic Tac deafult game rules
     /////////////////////////////
     // Starting default side
@@ -64,8 +57,7 @@ class App extends Component {
     // End of Tic Tac deafult game rules
     ////////////////////////////////////
 
-    // App state
-    this.state = {
+     return {
       positions: positions(),
       pieces: pieces(),
       game: {
@@ -74,10 +66,30 @@ class App extends Component {
         draw: null
       },
       combinations
-    };
+    }
+
+}
+
+    
+
+
+
+
+
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = initialState();
+
     // HandleCliks
     this.getClickedId = this.getClickedId.bind(this);
+    this.restart = this.restart.bind(this);
   }
+
+  componentWillMount() {
+    this.initialState = this.state
+}
 
   getClickedId(id) {
 
@@ -165,6 +177,13 @@ class App extends Component {
     });
   }
 
+  restart() {
+    const newstate = initialState();
+    this.setState({...newstate})
+    var elements = document.getElementsByTagName('line')
+    while (elements[0]) elements[0].parentNode.removeChild(elements[0])
+  }
+
 
 
   render() {
@@ -188,8 +207,11 @@ class App extends Component {
             this.state.game.winning.cssClass :
             ''}`
         }/> 
+        <br/>
+        
 
     <svg id="svg"></svg>
+    <button onClick={this.restart}>Restart game</button>
       </div>
     );
   }
