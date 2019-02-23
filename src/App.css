@@ -1,0 +1,8 @@
+.Cell_container{
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    width: 600px;
+    height: 600px;
+}

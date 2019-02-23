@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Cell from './Cell/Cell';
 
 class App extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class App extends Component {
         switch (starts) {
           case 1:
             return {side: i < 5 ? 1 : 0};
-          case 0:
+          default:
             return {side: i < 5 ? 0 : 1};
         }
       });
@@ -40,9 +41,19 @@ class App extends Component {
 
 
   render() {
+    let cells = () => {
+      return this.state.positions.map((item, i) => {
+        return (<Cell key={i}/>)
+      });
+    }
+
     return (
       <div>
-        <p>Tic Tac</p>
+        <div className="Cell_container">
+          {
+            cells()
+          }
+        </div>
       </div>
     );
   }
