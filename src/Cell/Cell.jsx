@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import './Cell.css';
 import Piece from '../Piece/Piece';
 
 class Cell extends Component {
@@ -24,7 +23,7 @@ class Cell extends Component {
         }
         
         return (
-            <div className="Cell" onClick={this.clickCell}>
+            <div className="Cell" onClick={this.clickCell} id={'the'+this.props.position.id} >
                 { piece() }
             </div>
         );

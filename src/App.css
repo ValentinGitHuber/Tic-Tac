@@ -1,80 +1,34 @@
-*{
-    -webkit-touch-callout: none; /* iOS Safari */
-      -webkit-user-select: none; /* Safari */
-       -khtml-user-select: none; /* Konqueror HTML */
-         -moz-user-select: none; /* Firefox */
-          -ms-user-select: none; /* Internet Explorer/Edge */
-              user-select: none; /* Non-prefixed version, currently
-                                    supported by Chrome and Opera */
-  }
-  
-.Cell_container{
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-
-    width: 600px;
-    height: 600px;
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower");
+.Cell_container {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 600px;
+  height: 600px;
 }
-
-.Board_container{
-    position: relative;
-    display: inline-block;
+.Cell {
+  border: 1px solid;
+  box-sizing: border-box;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
 }
-
-.Line{
-    width: 550px;
-    height: 10px;
-    background: red;
-    position: absolute;
-    display: none;
+.Piece {
+  font-size: 100px;
+  font-family: 'Indie Flower', cursive;
 }
-
-.win1{
-    top: 16.5%;
-    left: 25px;
-    transform: rotate(0deg);
-    display: block;
+#svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
 }
-.win2{
-    top: 50%;
-    left: 25px;
-    transform: rotate(0deg);
-    display: block;
-}
-.win3{
-    top: 83.5%;
-    left: 25px;
-    transform: rotate(0deg);
-    display: block;
-}
-.win4{
-    top: 50%;
-    left: -30%;
-    transform: rotate(90deg);
-    display: block;
-}
-.win5{
-    top: 50%;
-    left: 5%;
-    transform: rotate(90deg);
-    display: block;
-}
-.win6{
-    top: 50%;
-    left: 36.5%;
-    transform: rotate(90deg);
-    display: block;
-}
-.win7{
-    top: 50%;
-    left: 5%;
-    transform: rotate(45deg) scaleX(1.3);
-    display: block;
-}
-.win8{
-    top: 50%;
-    left: 5%;
-    transform: rotate(135deg) scaleX(1.3);
-    display: block;
+line {
+  stroke-width: 20px;
+  stroke: red;
 }

@@ -3,6 +3,27 @@ import _ from 'lodash';
 import './App.css';
 import Cell from './Cell/Cell';
 
+function drawLine(idFrom, idTo) {
+
+  const div1 = document.getElementById('the'+idFrom);
+  const div2 = document.getElementById('the'+idTo);
+
+  let x1 = div1.offsetLeft + (div1.offsetWidth/2);
+  let y1 = div1.offsetTop + (div1.offsetHeight/2);
+  
+  let x2 = div2.offsetLeft + (div2.offsetWidth/2);
+  let y2 = div2.offsetTop + (div2.offsetHeight/2);
+
+  var newLine = document.createElementNS('http://www.w3.org/2000/svg','line');
+  newLine.setAttribute('x1', x1);
+  newLine.setAttribute('y1', y1);
+  newLine.setAttribute('x2', x2);
+  newLine.setAttribute('y2', y2);
+  newLine.setAttribute("stroke", "black");
+  var svg = document.getElementById('svg');
+  svg.appendChild(newLine);
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -30,14 +51,14 @@ class App extends Component {
     };
     // Winning combinations
     const combinations = [
-      {arr: [0, 1, 2], cssClass: 'win1'},
-      {arr: [3, 4, 5], cssClass: 'win2'},
-      {arr: [6, 7, 8], cssClass: 'win3'},
-      {arr: [0, 3, 6], cssClass: 'win4'},
-      {arr: [1, 4, 7], cssClass: 'win5'},
-      {arr: [2, 5, 8], cssClass: 'win6'},
-      {arr: [0, 4, 8], cssClass: 'win7'},
-      {arr: [2, 4, 6], cssClass: 'win8'}
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6]
     ];
     ////////////////////////////////////
     // End of Tic Tac deafult game rules
@@ -59,6 +80,7 @@ class App extends Component {
   }
 
   getClickedId(id) {
+
     console.log('Clicked:', id)
     // Validate if clicked id is avaible for placing piece
     const validate = this.validatePosition(id);
@@ -108,8 +130,7 @@ class App extends Component {
   gameState() {
     const combinations = this.state.combinations;
     const positions = this.state.positions;
-    combinations.forEach((combination) => {
-      let comb = combination.arr
+    combinations.forEach((comb) => {
       if (//check if position has piece on it
         _.has(positions[comb[0]], 'piece') &&
         _.has(positions[comb[1]], 'piece') &&
@@ -122,10 +143,11 @@ class App extends Component {
           //stop game, someone wins
           const winningSide = positions[comb[0]].piece.side;
           const game = this.state.game;
-          game.winning = {
-            winningSide,
-            cssClass: combination.cssClass
-          };
+          game.winning = winningSide;
+
+          //render line
+          drawLine(_.head(comb), _.last(comb));
+
           //state
           this.setState({
             game
@@ -165,7 +187,9 @@ class App extends Component {
           `Line ${this.state.game.winning != null ? 
             this.state.game.winning.cssClass :
             ''}`
-        }/>
+        }/> 
+
+    <svg id="svg"></svg>
       </div>
     );
   }
