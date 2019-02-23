@@ -4,39 +4,48 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    // Don't call this.setState() here!
+    // Tic Tac deafult game rules
+    // Starting default side
+    const starts = 1;
+    // Positions are table cells
+    const positions = () => {
+      return new Array(9).fill(null).map((x, i) => {
+        return {id: i};
+      });
+    }
+    // Avaible pieces to put on table
+    const pieces = (starts) => {
+      return new Array(9).fill(null).map((x, i) => {
+        switch (starts) {
+          case 1:
+            return {side: i < 5 ? 1 : 0};
+          case 0:
+            return {side: i < 5 ? 0 : 1};
+        }
+      });
+    };
 
-    this.state = { counter: 0 };
-
-    this.positions = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    // App state
+    this.state = {
+      positions: positions(),
+      pieces: pieces(),
+      game: {
+        starts: starts,
+        win: null,
+        loose: null
+      }
+    };
   }
 
 
 
   render() {
-    console.log(this.positions)
     return (
       <div>
-        {
-          this.positions.forEach((p)=>{
-            console.log(p);
-            return this.positions
-          })
-        }
-        <p>bnm</p>
+        <p>Tic Tac</p>
       </div>
     );
   }
 }
 
 export default App;
-
-/*
-
-this.positions.forEach((p)=>{
-            console.log(p);
-            return (<div>
-              p
-            </div>)
-          })
- */
