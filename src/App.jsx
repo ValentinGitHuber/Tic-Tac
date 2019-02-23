@@ -30,14 +30,14 @@ class App extends Component {
     };
     // Winning combinations
     const combinations = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 3, 8],
-      [0, 4, 8],
-      [2, 4, 6]
+      {arr: [0, 1, 2], cssClass: 'win1'},
+      {arr: [3, 4, 5], cssClass: 'win2'},
+      {arr: [6, 7, 8], cssClass: 'win3'},
+      {arr: [0, 3, 6], cssClass: 'win4'},
+      {arr: [1, 4, 7], cssClass: 'win5'},
+      {arr: [2, 5, 8], cssClass: 'win6'},
+      {arr: [0, 4, 8], cssClass: 'win7'},
+      {arr: [2, 4, 6], cssClass: 'win8'}
     ];
     ////////////////////////////////////
     // End of Tic Tac deafult game rules
@@ -49,7 +49,8 @@ class App extends Component {
       pieces: pieces(),
       game: {
         movingSide: startingSide,
-        winning: null
+        winning: null,
+        draw: null
       },
       combinations
     };
@@ -70,7 +71,9 @@ class App extends Component {
   validatePosition(id) {//true if avaible cell and game not ended
     const positions = this.state.positions;
     const position = _.find(positions, ['id', id]);
-    return !_.has(position, 'piece') && this.state.game.winning === null;
+    return !_.has(position, 'piece') && 
+      this.state.game.winning === null && 
+      this.state.game.draw === null;
   }
 
   move(id) {
@@ -105,7 +108,8 @@ class App extends Component {
   gameState() {
     const combinations = this.state.combinations;
     const positions = this.state.positions;
-    combinations.forEach((comb) => {
+    combinations.forEach((combination) => {
+      let comb = combination.arr
       if (//check if position has piece on it
         _.has(positions[comb[0]], 'piece') &&
         _.has(positions[comb[1]], 'piece') &&
@@ -116,13 +120,24 @@ class App extends Component {
           positions[comb[0]].piece.side === positions[comb[2]].piece.side
         ) {
           //stop game, someone wins
-          const winninSide = positions[comb[0]].piece.side;
-          console.log("stop game - ", 'wins: ', winninSide);
+          const winningSide = positions[comb[0]].piece.side;
           const game = this.state.game;
-          game.winning = winninSide;
+          game.winning = {
+            winningSide,
+            cssClass: combination.cssClass
+          };
+          //state
           this.setState({
             game
           });
+        } else if (this.state.pieces.length === 0) {
+          const game = this.state.game;
+          game.draw = true;
+            this.setState({
+              game
+            }, ()=>{
+              console.log('Draw')
+            });
         }
       }
     });
@@ -137,13 +152,20 @@ class App extends Component {
       });
     }
 
+
+
     return (
-      <div>
+      <div className="Board_container">
         <div className="Cell_container">
           {
             cells()
           }
         </div>
+        <div className={
+          `Line ${this.state.game.winning != null ? 
+            this.state.game.winning.cssClass :
+            ''}`
+        }/>
       </div>
     );
   }

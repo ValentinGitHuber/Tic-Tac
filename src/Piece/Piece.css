@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
 .Piece{
-    border: 1px solid red;
-    padding: 5px;
+    font-size: 100px;
+    font-family: 'Indie Flower', cursive;
 }
