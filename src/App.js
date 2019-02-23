@@ -1,28 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    // Don't call this.setState() here!
+
+    this.state = { counter: 0 };
+
+    this.positions = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  }
+
+
+
   render() {
+    console.log(this.positions)
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        {
+          this.positions.forEach((p)=>{
+            console.log(p);
+            return this.positions
+          })
+        }
+        <p>bnm</p>
       </div>
     );
   }
 }
 
 export default App;
+
+/*
+
+this.positions.forEach((p)=>{
+            console.log(p);
+            return (<div>
+              p
+            </div>)
+          })
+ */
