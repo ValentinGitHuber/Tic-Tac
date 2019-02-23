@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 import './Cell.css';
-import PropTypes from 'prop-types';
 import Piece from '../Piece/Piece';
 
 class Cell extends Component {
