@@ -3,6 +3,13 @@ import _ from 'lodash';
 import './App.css';
 import Cell from './Cell/Cell';
 
+import Minimax from 'tic-tac-toe-minimax';
+const { GameStep } = Minimax;
+ 
+ 
+
+
+
 function drawLine(idFrom, idTo) {
   const div1 = document.getElementById('the'+idFrom);
   const div2 = document.getElementById('the'+idTo);
@@ -19,56 +26,7 @@ function drawLine(idFrom, idTo) {
   svg.appendChild(newLine);
 }
 
-function initialState() {
-  /////////////////////////////
-    // Tic Tac deafult game rules
-    /////////////////////////////
-    // Starting default side
-    const startingSide = 1;
-    // Positions are table cells with their ids
-    const positions = () => { //array
-      return new Array(9).fill(null).map((x, i) => {
-        return {id: i};
-      });
-    }
-    // Avaible pieces to put on table with their side
-    const pieces = (startingSide) => { //array
-      return new Array(9).fill(null).map((x, i) => {
-        switch (startingSide) {
-          case 1:
-            return {side: i < 5 ? 0 : 1};
-          default:
-            return {side: i < 5 ? 1 : 0};
-        }
-      });
-    };
-    // Winning combinations
-    const combinations = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6]
-    ];
-    ////////////////////////////////////
-    // End of Tic Tac deafult game rules
-    ////////////////////////////////////
 
-     return {
-      positions: positions(),
-      pieces: pieces(),
-      game: {
-        movingSide: startingSide,
-        winning: null,
-        draw: null
-      },
-      combinations
-    }
-
-}
 
     
 
@@ -78,21 +36,82 @@ function initialState() {
 
 
 class App extends Component {
+
+  initialState(startingSide) {
+    /////////////////////////////
+      // Tic Tac deafult game rules
+      /////////////////////////////
+      // Positions are table cells with their ids
+      const positions = () => { //array
+        return new Array(9).fill(null).map((x, i) => {
+          return {id: i};
+        });
+      }
+      // Avaible pieces to put on table with their side
+      const pieces = (startingSide) => { //array
+        return new Array(9).fill(null).map((x, i) => {
+          switch (startingSide) {
+            case 1:
+              return {side: i < 5 ? 0 : 1};
+            default:
+              return {side: i < 5 ? 1 : 0};
+          }
+        });
+      };
+      // Winning combinations
+      const combinations = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+      ];
+      ////////////////////////////////////
+      // End of Tic Tac deafult game rules
+      ////////////////////////////////////
+  
+      if(startingSide === 0) {
+        const newpos = [0,1,2,3,4,5,6,7,8]
+        const huPlayer = 'X';
+        const aiPlayer = 'O';
+        const symbols = {
+            huPlayer: huPlayer,
+            aiPlayer: aiPlayer
+        }
+        const difficulty = "Hard";
+        const gameStep = GameStep( newpos, symbols, difficulty );
+        const diffIndex = _.difference(newpos, gameStep.board);
+    
+        console.log('gamestep', gameStep, diffIndex[0])
+        this.getClickedId(diffIndex[0]);
+      }
+  
+       return {
+        positions: positions(),
+        pieces: pieces(),
+        game: {
+          movingSide: startingSide,
+          winning: null,
+          draw: null
+        },
+        combinations,
+        ai: startingSide === 1 ? 0 : 1
+      }
+  
+  }
   constructor(props) {
     super(props);
-    this.state = initialState();
+    this.state = this.initialState(1);
 
     // HandleCliks
     this.getClickedId = this.getClickedId.bind(this);
     this.restart = this.restart.bind(this);
   }
 
-  componentWillMount() {
-    this.initialState = this.state
-}
-
   getClickedId(id) {
-
     console.log('Clicked:', id)
     // Validate if clicked id is avaible for placing piece
     const validate = this.validatePosition(id);
@@ -135,11 +154,11 @@ class App extends Component {
         pieces: newpieces,
         game
       },
-      () => this.gameState()
+      () => this.gameState(game.movingSide)
     );
   }
 
-  gameState() {
+  gameState(movingSide) {
     const combinations = this.state.combinations;
     const positions = this.state.positions;
     combinations.forEach((comb) => {
@@ -164,7 +183,7 @@ class App extends Component {
           this.setState({
             game
           });
-        } else if (this.state.pieces.length === 0) {
+        } else if (this.state.pieces.length === 0) {//draw, stop game
           const game = this.state.game;
           game.draw = true;
             this.setState({
@@ -175,10 +194,32 @@ class App extends Component {
         }
       }
     });
+
+    //AI
+    const newpos = positions.map((item)=>{
+      if (_.has(item, 'piece')) {
+        return item.piece.side === 1 ? 'X' : 'O';
+      }
+      return item.id;
+    });
+    const huPlayer = 'X';
+    const aiPlayer = 'O';
+    const symbols = {
+        huPlayer: huPlayer,
+        aiPlayer: aiPlayer
+    }
+    const difficulty = "Normal";
+    const gameStep = GameStep( newpos, symbols, difficulty );
+    const diffIndex = _.difference(newpos, gameStep.board);
+
+
+    if(movingSide === this.state.ai)
+    this.getClickedId(diffIndex[0]);
+    
   }
 
   restart() {
-    const newstate = initialState();
+    const newstate = this.initialState(this.state.ai);
     this.setState({...newstate})
     var elements = document.getElementsByTagName('line')
     while (elements[0]) elements[0].parentNode.removeChild(elements[0])
