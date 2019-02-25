@@ -17,7 +17,6 @@ class OponentModal extends Component {
 
     handleFlip() {
         let old = this.state.flip;
-        console.log(old)
         this.setState({ flip: !old });
         
     }

@@ -5,6 +5,7 @@
 .navbar {
   font-family: 'Indie Flower', cursive;
   font-size: 150%;
+  z-index: 2;
 }
 .select_mode button * {
   margin: 0 0.3em;
@@ -32,4 +33,18 @@
 }
 .btn-custom:hover {
   color: #fff;
+}
+.board {
+  display: flex;
+}
+.board .board_row {
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  outline: 1px solid #00f;
+}
+.board .board_row .pos {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #f00;
 }
