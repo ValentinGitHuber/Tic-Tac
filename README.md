@@ -18,3 +18,49 @@ React docs: https://reactjs.org/docs/getting-started.html
 3. Install packages `npm i`
 
 4. Run app `npm start`
+
+## Game State Object
+
+`{
+    game: {
+        side: 'X',
+        moves: 5,
+        model: 'humanHuman' | 'humanAi',
+        end: false
+    },
+    humanAi: {
+        humanSide: 'X',
+        aiSide: 'O',
+        difficulty: 'Hard' | 'Easy' | 'Normal',
+        stats: {
+            games: 6,
+            humanWins: 4,
+            aiWins: 2
+        }
+    },
+    humanHuman: {
+        player: 'X',
+        oponent: 'O',
+        stats: {
+            games: 4,
+            playerWins: 3,
+            oponentWins: 1
+        }
+    }
+    board: ['', '', 'X', '', '', 'O', '', '', ''],
+    combinations: [
+        // Horizontal
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+
+        // Vertical
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+
+        // Diagonals
+        [0, 4, 8],
+        [2, 4, 6]
+    ]
+}`

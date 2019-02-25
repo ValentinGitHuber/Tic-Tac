@@ -1,97 +1,35 @@
-@import url("https://fonts.googleapis.com/css?family=Indie+Flower");
-body{
-  background:  rgb(235, 234, 234);
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower|Patrick+Hand+SC");
+.cursive {
+  font-family: 'Patrick Hand SC', cursive;
 }
-.Board_container{
-  display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.Cell_container {
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  width: 600px;
-  height: 600px;
-}
-.Cell {
-  border-right: 0.13em solid transparent;
-  border-bottom: 0.13em solid transparent;
-  border-image: url('http://emptyeasel.com/wp-content/uploads/2012/11/creatingtexture2-carrielewis.jpg') 0 27 27 27 round stretch;
-  box-sizing: border-box;
-  width: 200px;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-}
-#the2, #the5, #the8{
-  border-right: none;
-}
-#the6, #the7, #the8{
-  border-bottom: none;
-}
-.Piece {
-  font-size: 100px;
+.navbar {
   font-family: 'Indie Flower', cursive;
-  color: rgb(6, 14, 29);
+  font-size: 150%;
 }
-#svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: -1;
+.select_mode button * {
+  margin: 0 0.3em;
 }
-line {
-  stroke-width: 20px;
-  stroke: rgb(228, 77, 77);
-}
-button{
-  position: absolute;
-  transform: translateY(45vh);
-
-  align-self: center;
-  background: #D6D9DE;
-  padding: 1rem 1rem;
-  margin: 0 1rem;
-  transition: all .3s ease;
-  color: #41403E;
-  font-size: 1.5rem;
-  letter-spacing: 1px;
-  outline: none;
-  box-shadow: 20px 38px 34px -26px rgba(0, 0, 0, 0.2);
-  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-  border: solid 2px rgb(6, 14, 29);
-  color: rgb(6, 14, 29);
-  font-family: 'Indie Flower', cursive;
-
-}
-button:active{
-  box-shadow: 2px 8px 4px -6px rgba(0, 0, 0, 0.3);
-}
-
-@media screen and (max-width: 700px) {
-  .Cell_container {
-    width: 300px;
-    height: 300px;
-  }
-  .Cell {
-    border-right: 0.1em solid transparent;
-    border-bottom: 0.1em solid transparent;
-    width: 100px;
-    height: 100px;
-  }
-  .Piece {
-    font-size: 50px;
-  }
-  line {
-    stroke-width: 10px;
+@media (min-width: 768px) {
+  .homepage_image {
+    max-width: 250px;
   }
 }
-
-
-
-
+.flip_move {
+  width: 3em;
+  height: 3em;
+  cursor: pointer;
+}
+.flip_move img {
+  width: 3em;
+  height: 3em;
+}
+.test {
+  outline: 1px solid #f00;
+}
+.btn-custom {
+  background: #96cfba;
+  color: #fff;
+}
+.btn-custom:hover {
+  color: #fff;
+}
