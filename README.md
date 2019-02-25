@@ -21,7 +21,8 @@ React docs: https://reactjs.org/docs/getting-started.html
 
 ## Game State Object
 
-`{
+```console
+{
     game: {
         side: 'X',
         moves: 5,
@@ -63,4 +64,5 @@ React docs: https://reactjs.org/docs/getting-started.html
         [0, 4, 8],
         [2, 4, 6]
     ]
-}`
+}
+```
