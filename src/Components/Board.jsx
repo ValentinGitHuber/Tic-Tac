@@ -17,8 +17,7 @@ class Board extends Component {
                 oponentWin: 0,
                 draw: 0
             },
-            board: ['', '', '', '', '', '', '', '', ''],
-            exit: false
+            board: ['', '', '', '', '', '', '', '', '']
         }
         this.placePiece = this.placePiece.bind(this);
         this.exitGame = this.exitGame.bind(this);
@@ -119,7 +118,6 @@ class Board extends Component {
     }
 
     restartGame() {
-        console.log('restart')
         this.setState(prevState => ({
             ...prevState,
             moves: 0,
