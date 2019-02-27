@@ -15,6 +15,7 @@ class App extends Component {
       setupData: {}
     };
     this.handleMenu = this.handleMenu.bind(this);
+    this.handleExit = this.handleExit.bind(this);
   }
 
   handleMenu(setup, menuData) {
@@ -27,10 +28,17 @@ class App extends Component {
     });
   }
 
+  handleExit() {
+    this.setState({
+      board: false,
+      setupData: {}
+    })
+  }
+
   render() {
     const showBoard = () => {
       if (this.state.board) {
-        return (<Board show={this.state.board} setupData={this.state.setupData} />);
+        return (<Board show={this.state.board} setupData={this.state.setupData} exitgame={this.handleExit} />);
       } else {
         return (<Menu show={!this.state.board} setupData={this.handleMenu} />)
       }

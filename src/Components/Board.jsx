@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Col, Image } from 'react-bootstrap';
 import Position from './Position';
 import Minimax from 'tic-tac-toe-minimax';
 import { stringEmpty, revertSymbol, winningCombinations, drawLine } from '../helpers';
@@ -17,9 +17,17 @@ class Board extends Component {
                 oponentWin: 0,
                 draw: 0
             },
-            board: ['', '', '', '', '', '', '', '', '']
+            board: ['', '', '', '', '', '', '', '', ''],
+            exit: false
         }
         this.placePiece = this.placePiece.bind(this);
+        this.exitGame = this.exitGame.bind(this);
+        this.restartGame = this.restartGame.bind(this);
+    }
+
+
+    componentDidMount() {
+        this.setState({ ...this.props.setupData, side: this.props.setupData.player });
     }
 
     placePiece(id) {
@@ -81,42 +89,80 @@ class Board extends Component {
         const board = state.board;
         let endResult = {...state.stats};
         let endGame = false;
-        if (state.moves === 9) {
-            // Draw
-            endResult.draw += 1;
-            endGame = true;
-        }
+        
         winningCombinations().forEach((combArr) => {
             if (combArr.every(id => !stringEmpty(board[id]))) {//positions not empty
                 if (combArr.every(id => board[id] === state.player)) {
                     // Player wins
                     endResult.playerWin += 1;
                     endGame = true;
-                    if (state.moves === 9) endResult.draw -= 1;
                     drawLine(combArr[0], combArr[2]);
                 } else if (combArr.every(id => board[id] === state.oponent)) {
                     // Oponent wins
                     endResult.oponentWin += 1;
                     endGame = true;
-                    if (state.moves === 9) endResult.draw -= 1;
                     drawLine(combArr[0], combArr[2]);
                 } 
             }
         });
+        //computer makes one more move
+        let maxMoves = state.setup === 'computer' ? 10 : 9;
+        if (state.moves === maxMoves && !endGame) {
+            // Draw
+            endResult.draw += 1;
+            endGame = true;
+        }
         this.setState({
             end: endGame,
             stats: endResult
         });
     }
 
-    componentDidMount() {
-        this.setState({ ...this.props.setupData, side: this.props.setupData.player });
+    restartGame() {
+        console.log('restart')
+        this.setState(prevState => ({
+            ...prevState,
+            moves: 0,
+            end: false,
+            board: ['', '', '', '', '', '', '', '', '']
+        }), () => {
+            //remove svg line
+            var elements = document.getElementsByTagName('line')
+            while (elements[0]) elements[0].parentNode.removeChild(elements[0])
+        });
+    }
+
+    exitGame() {
+        this.props.exitgame()
     }
 
     render() {
         // console.log(this.state)
+        const restart = () => {
+            if (this.state.end) {
+                return (<Image src="/restart.png" width="40px" height="40px" className="mx-auto"
+                    onClick={this.restartGame}
+                />)
+            }
+        }
+        const exit = () => {
+            if (this.state.end) {
+                return (<Image src="/exit.png" width="40px" height="40px" className="mx-auto"
+                    onClick={this.exitGame}
+                />)
+            }
+        }
+        
         return (
             <Container className="board_container p-5">
+                <Row className="pb-4">
+                    <Col className="text-center">Player: {this.state.stats.playerWin}</Col>
+                    <Col className="text-center">Draws: {this.state.stats.draw}</Col>
+                    <Col className="text-center">
+                        {this.state.setup === 'computer' ? 'Computer' : 'Oponent'}:{' '}
+                        {this.state.stats.oponentWin}
+                    </Col>
+                </Row>
                 <div className="board mx-auto">
                     <div className="board_row">
                         <Position id={0} click={this.placePiece} symbol={this.state.board[0]} />
@@ -135,6 +181,14 @@ class Board extends Component {
                     </div>
                 </div>
                 <svg id="svg"></svg>
+                <Row className="pt-4">
+                    {
+                        exit()
+                    }
+                    {
+                        restart()
+                    }
+                </Row>
             </Container>
         );
     }
