@@ -1,15 +1,15 @@
 {
-  "main.css": "/static/css/main.a717df1f.chunk.css",
-  "main.js": "/static/js/main.5226f25e.chunk.js",
-  "main.js.map": "/static/js/main.5226f25e.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.fdfcfda2.js",
-  "runtime~main.js.map": "/static/js/runtime~main.fdfcfda2.js.map",
-  "static/css/2.bff108b2.chunk.css": "/static/css/2.bff108b2.chunk.css",
-  "static/js/2.6c7702c2.chunk.js": "/static/js/2.6c7702c2.chunk.js",
-  "static/js/2.6c7702c2.chunk.js.map": "/static/js/2.6c7702c2.chunk.js.map",
-  "index.html": "/index.html",
-  "precache-manifest.f90b26d79c7c91e5d69b95fdf46d39f3.js": "/precache-manifest.f90b26d79c7c91e5d69b95fdf46d39f3.js",
-  "service-worker.js": "/service-worker.js",
-  "static/css/2.bff108b2.chunk.css.map": "/static/css/2.bff108b2.chunk.css.map",
-  "static/css/main.a717df1f.chunk.css.map": "/static/css/main.a717df1f.chunk.css.map"
+  "main.css": "/ValentinGitHuber/tic-tac.git/static/css/main.a717df1f.chunk.css",
+  "main.js": "/ValentinGitHuber/tic-tac.git/static/js/main.9a77d752.chunk.js",
+  "main.js.map": "/ValentinGitHuber/tic-tac.git/static/js/main.9a77d752.chunk.js.map",
+  "runtime~main.js": "/ValentinGitHuber/tic-tac.git/static/js/runtime~main.5e62812c.js",
+  "runtime~main.js.map": "/ValentinGitHuber/tic-tac.git/static/js/runtime~main.5e62812c.js.map",
+  "static/css/2.bff108b2.chunk.css": "/ValentinGitHuber/tic-tac.git/static/css/2.bff108b2.chunk.css",
+  "static/js/2.6c7702c2.chunk.js": "/ValentinGitHuber/tic-tac.git/static/js/2.6c7702c2.chunk.js",
+  "static/js/2.6c7702c2.chunk.js.map": "/ValentinGitHuber/tic-tac.git/static/js/2.6c7702c2.chunk.js.map",
+  "index.html": "/ValentinGitHuber/tic-tac.git/index.html",
+  "precache-manifest.262420f6de34960b840198aa1e8c6f10.js": "/ValentinGitHuber/tic-tac.git/precache-manifest.262420f6de34960b840198aa1e8c6f10.js",
+  "service-worker.js": "/ValentinGitHuber/tic-tac.git/service-worker.js",
+  "static/css/2.bff108b2.chunk.css.map": "/ValentinGitHuber/tic-tac.git/static/css/2.bff108b2.chunk.css.map",
+  "static/css/main.a717df1f.chunk.css.map": "/ValentinGitHuber/tic-tac.git/static/css/main.a717df1f.chunk.css.map"
 }
