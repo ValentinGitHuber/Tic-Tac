@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Col, Row, Container, Image } from 'react-bootstrap';
 import ModalComputer from './ModalComputer';
 import ModalOponent from './ModalOponent';
+import { getImage } from '../helpers';
 
 class Menu extends Component {
     constructor(props) {
@@ -36,7 +37,7 @@ class Menu extends Component {
         return (
             <Container className='menu_container'>
                 <Row>
-                    <Image src="./logo_big.png" className="homepage_image mx-auto w-50 h-50 mt-5" />
+                    <Image src={getImage('logo_big')} className="homepage_image mx-auto w-50 h-50 mt-5" />
                 </Row>
                 <Row className="select_mode p-5 cursive">
                     <Col lg={5} className="mb-4 mx-auto">

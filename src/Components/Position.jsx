@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 // BOOTSTRAP
 import { Image } from 'react-bootstrap';
+import { getImage } from '../helpers';
 
 class Position extends Component {
     render() {
         const image = () => {
             switch (this.props.symbol) {
                 case 'X':
-                    return (<Image src="./public/x_dark.png" />);
+                    return (<Image src={getImage('x_dark')} />);
                 case 'O':
-                    return (<Image src="./public/o_dark.png" />);
+                    return (<Image src={getImage('o_dark')} />);
                 default:
                     return;
             }

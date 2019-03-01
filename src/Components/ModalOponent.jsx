@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Col, Row, Image, Modal, Form } from 'react-bootstrap';
+import { getImage } from '../helpers';
 
 class ModalOponent extends Component {
   constructor(props) {
@@ -17,8 +18,8 @@ class ModalOponent extends Component {
   }
 
   render() {
-    const you = this.state.flip ? "./public/x_dark.png" : "./public/o_dark.png";
-    const oponent = this.state.flip ? "./public/o_dark.png" : "./public/x_dark.png";
+    const you = this.state.flip ? getImage('x_dark') : getImage('o_dark');
+    const oponent = this.state.flip ? getImage('o_dark') : getImage('x_dark');
     const data = () => {
       return {
         player: this.state.flip ? 'X' : 'O',

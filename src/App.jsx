@@ -50,8 +50,6 @@ class App extends Component {
           {
             showBoard()
           }
-          {/* <Board show={this.state.board} setupData={this.state.setupData} />
-          <Menu show={!this.state.board} setupData={this.handleMenu} /> */}
         </div>
       </div>
     );

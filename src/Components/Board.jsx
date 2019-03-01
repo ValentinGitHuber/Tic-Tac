@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import Position from './Position';
 import Minimax from 'tic-tac-toe-minimax';
-import { stringEmpty, revertSymbol, winningCombinations, drawLine } from '../helpers';
+import { stringEmpty, revertSymbol, winningCombinations, drawLine, getImage } from '../helpers';
 const { GameStep } = Minimax;
 
 class Board extends Component {
@@ -138,14 +138,14 @@ class Board extends Component {
         // console.log(this.state)
         const restart = () => {
             if (this.state.end) {
-                return (<Image src="./public/restart.png" width="40px" height="40px" className="mx-auto"
+                return (<Image src={getImage('restart')} width="40px" height="40px" className="mx-auto"
                     onClick={this.restartGame}
                 />)
             }
         }
         const exit = () => {
             if (this.state.end) {
-                return (<Image src="./public/exit.png" width="40px" height="40px" className="mx-auto"
+                return (<Image src={getImage('exit')} width="40px" height="40px" className="mx-auto"
                     onClick={this.exitGame}
                 />)
             }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Col, Row, Image, Modal, Form } from 'react-bootstrap';
-
+import { getImage } from '../helpers';
 
 class ModalComputer extends Component {
   constructor(props) {
@@ -24,8 +24,8 @@ class ModalComputer extends Component {
   }
 
   render() {
-    let side1 = this.state.flip ? "./public/x_dark.png" : "./public/o_dark.png";
-    let side2 = this.state.flip ? "./public/o_dark.png" : "./public/x_dark.png";
+    let side1 = this.state.flip ? getImage('x_dark') : getImage('o_dark');
+    let side2 = this.state.flip ? getImage('o_dark') : getImage('x_dark');
 
     let level = (lvl) => {
       if (this.state.level === lvl) {

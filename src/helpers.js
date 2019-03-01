@@ -50,3 +50,37 @@ export function stringEmpty(str) {
 export function revertSymbol(prevSymbol) {
     return prevSymbol === 'X' ? 'O' : 'X';
 }
+
+export function getImage(name) {
+    const path = './';
+    switch (name) {
+        case 'logo_big':
+            return path + 'logo_big.png';
+        case 'logo_small':
+            return path + 'logo_small.gif';
+        case 'logo_extra_small':
+            return path + 'logo_extra_small.png';
+        case 'board':
+            return path + 'board.png';
+        case 'exit':
+            return path + 'exit.png';
+        case 'o_dark':
+            return path + 'o_dark.png';
+        case 'o_light':
+            return path + 'o_light.png';
+        case 'restart':
+            return path + 'restart.png';
+        case 'x_light':
+            return path + 'x_light.png';
+        case 'x_dark':
+            return path + 'x_dark.png';
+        default:
+            return '';
+    }
+}
+
+
+
+
+
+
