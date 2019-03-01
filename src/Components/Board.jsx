@@ -150,6 +150,10 @@ class Board extends Component {
                 />)
             }
         }
+
+        const boardImg = {
+            backgroundImage: `url(`+getImage('board')+`)`
+        }
         
         return (
             <Container className="board_container p-5">
@@ -161,7 +165,7 @@ class Board extends Component {
                         {this.state.stats.oponentWin}
                     </Col>
                 </Row>
-                <div className="board mx-auto">
+                <div className="board mx-auto" style={boardImg}>
                     <div className="board_row">
                         <Position id={0} click={this.placePiece} symbol={this.state.board[0]} />
                         <Position id={3} click={this.placePiece} symbol={this.state.board[3]} />
