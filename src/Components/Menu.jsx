@@ -37,7 +37,7 @@ class Menu extends Component {
             <Container className='menu_container'>
                 <Row>
                     <Image src="./public/logo_big.png" className="homepage_image mx-auto w-50 h-50 mt-5" />
-                    <Image src={"./public/logo_big.png"} className="homepage_image mx-auto w-50 h-50 mt-5" />
+                    <Image src={window.location.origin+"./public/logo_big.png"} className="homepage_image mx-auto w-50 h-50 mt-5" />
                 </Row>
                 <Row className="select_mode p-5 cursive">
                     <Col lg={5} className="mb-4 mx-auto">
