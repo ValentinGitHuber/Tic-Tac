@@ -6,7 +6,7 @@ class TopBar extends Component {
         return (
             <Navbar bg="light">
                 <div className="mx-auto">
-                    <Image src={this.props.src} />
+                    <Image src="./public/logo_extra_small.png" />
                     Tic Tac Toe
                 </div>
             </Navbar>

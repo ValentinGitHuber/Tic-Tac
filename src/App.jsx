@@ -45,7 +45,7 @@ class App extends Component {
     }
     return (
       <div>
-        <TopBar src="/logo_extra_small.png" />
+        <TopBar />
         <div className="fluid-container">
           {
             showBoard()

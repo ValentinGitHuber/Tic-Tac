@@ -24,8 +24,8 @@ class ModalComputer extends Component {
   }
 
   render() {
-    let side1 = this.state.flip ? "/x_dark.png" : "/o_dark.png";
-    let side2 = this.state.flip ? "/o_dark.png" : "/x_dark.png";
+    let side1 = this.state.flip ? "./public/x_dark.png" : "./public/o_dark.png";
+    let side2 = this.state.flip ? "./public/o_dark.png" : "./public/x_dark.png";
 
     let level = (lvl) => {
       if (this.state.level === lvl) {

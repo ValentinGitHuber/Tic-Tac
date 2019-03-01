@@ -7,9 +7,9 @@ class Position extends Component {
         const image = () => {
             switch (this.props.symbol) {
                 case 'X':
-                    return (<Image src="/x_dark.png" />);
+                    return (<Image src="./public/x_dark.png" />);
                 case 'O':
-                    return (<Image src="/o_dark.png" />);
+                    return (<Image src="./public/o_dark.png" />);
                 default:
                     return;
             }

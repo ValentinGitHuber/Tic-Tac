@@ -138,14 +138,14 @@ class Board extends Component {
         // console.log(this.state)
         const restart = () => {
             if (this.state.end) {
-                return (<Image src="/restart.png" width="40px" height="40px" className="mx-auto"
+                return (<Image src="./public/restart.png" width="40px" height="40px" className="mx-auto"
                     onClick={this.restartGame}
                 />)
             }
         }
         const exit = () => {
             if (this.state.end) {
-                return (<Image src="/exit.png" width="40px" height="40px" className="mx-auto"
+                return (<Image src="./public/exit.png" width="40px" height="40px" className="mx-auto"
                     onClick={this.exitGame}
                 />)
             }

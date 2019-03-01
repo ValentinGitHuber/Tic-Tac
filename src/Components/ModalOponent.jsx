@@ -17,8 +17,8 @@ class ModalOponent extends Component {
   }
 
   render() {
-    const you = this.state.flip ? "/x_dark.png" : "/o_dark.png";
-    const oponent = this.state.flip ? "/o_dark.png" : "/x_dark.png";
+    const you = this.state.flip ? "./public/x_dark.png" : "./public/o_dark.png";
+    const oponent = this.state.flip ? "./public/o_dark.png" : "./public/x_dark.png";
     const data = () => {
       return {
         player: this.state.flip ? 'X' : 'O',
