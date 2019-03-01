@@ -3,8 +3,13 @@ import { Container, Row, Col, Image } from 'react-bootstrap';
 import Position from './Position';
 import Minimax from 'tic-tac-toe-minimax';
 import { stringEmpty, revertSymbol, winningCombinations, drawLine, getImage } from '../helpers';
-const { GameStep } = Minimax;
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLaptop } from '@fortawesome/free-solid-svg-icons'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faBalanceScale } from '@fortawesome/free-solid-svg-icons'
+
+const { GameStep } = Minimax;
 class Board extends Component {
     constructor(props) {
         super(props);
@@ -158,10 +163,19 @@ class Board extends Component {
         return (
             <Container className="board_container p-5">
                 <Row className="pb-4">
-                    <Col className="text-center">Player: {this.state.stats.playerWin}</Col>
-                    <Col className="text-center">Draws: {this.state.stats.draw}</Col>
                     <Col className="text-center">
-                        {this.state.setup === 'computer' ? 'Computer' : 'Oponent'}:{' '}
+                        {this.state.setup === 'computer' ? (<FontAwesomeIcon icon={faUser} />) : 'Player:'}
+                        {' '}
+                        {this.state.stats.playerWin}
+                    </Col>
+                    <Col className="text-center">
+                        {this.state.setup === 'computer' ? (<FontAwesomeIcon icon={faBalanceScale} />) : 'Draw:'}
+                        {' '}
+                        {this.state.stats.draw}
+                    </Col>
+                    <Col className="text-center">
+                        {this.state.setup === 'computer' ? (<FontAwesomeIcon icon={faLaptop} />) : 'Oponent:'}
+                        {' '}
                         {this.state.stats.oponentWin}
                     </Col>
                 </Row>

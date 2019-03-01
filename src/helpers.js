@@ -6,6 +6,8 @@ export function drawLine(idFrom, idTo) {
     const div2 = document.getElementById('position' + idTo);
     const svg = document.getElementById('svg');
     let newLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    newLine.setAttribute('id', 'line');
+    newLine.setAttribute('class', 'animated jello');
     newLine.setAttribute('x1', div1.offsetLeft + (div1.offsetWidth / 2));
     newLine.setAttribute('y1', div1.offsetTop + (div1.offsetHeight / 2));
     newLine.setAttribute('x2', div2.offsetLeft + (div2.offsetWidth / 2));
