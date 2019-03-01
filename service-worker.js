@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/ValentinGitHuber/tic-tac.git/precache-manifest.262420f6de34960b840198aa1e8c6f10.js"
+  "/tic-tac/precache-manifest.00ba21df044edc367acd5b7637c6b56d.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/ValentinGitHuber/tic-tac.git/index.html", {
+workbox.routing.registerNavigationRoute("/tic-tac/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
